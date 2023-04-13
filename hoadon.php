@@ -3,31 +3,36 @@
 <?php
 	include ('../include/connect.php');
 	
-    $select = "select * from lienhe ";
+    $select = "select * from hoadon";
     $query = mysqli_query(mysqli_connect("localhost","root","","oto"),$select);
     $dem = mysqli_num_rows($query);
 ?>
 <div class="quanlysp">
-	<h3>QUẢN LÝ LIÊN HỆ</h3>
-	<p>Có tổng <font color=red><b><?php echo $dem ?></b></font> tin</p>
-	<form action="admin.php?admin=xulyht" method="post">
+	<h3>QUẢN LÝ ĐƠN HÀNG</h3>
+	
+	<p>Có tổng <font color=red><b><?php echo $dem ?></b></font> hóa đơn</p><br>
+	<form action="admin.php?admin=xulyhd" method="post">
 		<div id="check">
 			<p>
+				<input type="submit" name="giaohang" value="Đã giao hàng" />
+				<input type="submit" name="huy" value="Hủy" />
 				<input type="submit" name="xoa" value="Xóa" />
 
 			</p>
 		</div>
+	
 </div>
 <table>
     
     <tr class='tieude_hienthi_sp'>
-		
-		<td width="30"><input type="checkbox" name="check"  class="checkbox" onclick="checkall('item', this)"></td>
-        <td>ID</td>
-        <td>Chủ đề</td>
-        <td>Nội dung</td>
-        <td>Tên</td>
+        <td width="30"><input type="checkbox" name="check"  class="checkbox" onclick="checkall('item', this)"></td>
+        <td>Mã HD</td>
+        <td>Họ Tên</td>
+        <td>Địa Chỉ</td>
+        <td>Điện Thoại</td>
         <td>Email</td>
+        <td>Trạng thái</td>
+        <td colspan=2>Active</td>
     </tr>
 
     <?php
@@ -50,7 +55,7 @@
 
 		// Chạy 1 MySQL query để hiện thị kết quả trên trang hiện tại  
 
-		$sql = mysqli_query(mysqli_connect("localhost","root","","oto"),"SELECT * FROM lienhe LIMIT $from, $max_results"); 
+		$sql = mysqli_query(mysqli_connect("localhost","root","","oto"),"SELECT * FROM hoadon ORDER by mahd DESC  LIMIT $from, $max_results"); 
 
 
 
@@ -60,17 +65,21 @@
         {
 ?>
             <tr class='noidung_hienthi_sp'>
-				<td class="masp_hienthi_sp"><input type="checkbox" name="id[]" class="item" class="checkbox" value="<?=$bien['idht']?>"/></td>
-                <td class="masp_hienthi_sp"><?php  echo $bien['idht'] ?></td>
-                <td class="stt_hienthi_sp"><?php echo $bien['chude'] ?></td>
-                <td class="img_hienthi_sp"> <?php echo $bien['noidung'] ?>  </td>
-				<td class="sl_hienthi_sp"><?php echo $bien['hoten'] ?></td>
+                <td class="masp_hienthi_sp"><input type="checkbox" name="id[]" class="item" class="checkbox" value="<?=$bien['mahd']?>"/></td>
+                <td class="masp_hienthi_sp"><?php  echo $bien['mahd'] ?></td>
+                <td class="stt_hienthi_sp"><?php echo $bien['hoten'] ?></td>
+				<td class="sl_hienthi_sp"><?php echo $bien['diachi'] ?></td>
+				<td class="sl_hienthi_sp">0<?php echo $bien['dienthoai'] ?></td>
 				<td class="sl_hienthi_sp"><?php echo $bien['email'] ?></td>
-			</tr>
+				<td class="sl_hienthi_sp"><?php if($bien['trangthai']==1) echo "Đang xử lý"; else if($bien['trangthai']==2) echo"Đã giao hàng"; else echo"Đã hủy đơn hàng";?></td>
+				<td class="active_hienthi_sp" style="width:70px;"><a href="admin.php?admin=chitiethoadon&mahd=<?php echo $bien['mahd']; ?> " style="float:left;">Chi tiết</a>
+					
+				</td>
+            </tr>
 <?php 
     }
 	
-    else echo "<tr><td colspan='6'>Không có tin nào</td></tr>";
+    else echo "<tr><td colspan='6'>Không có sản phẩm trong CSDL</td></tr>";
 	
 ?>
 </table>
@@ -79,7 +88,7 @@
 		
 		<?php
 			// Tính tổng kết quả trong toàn DB:  
-		$total_results = mysqli_fetch_array(mysqli_query(mysqli_connect("localhost","root","","oto"),"SELECT COUNT(*) as Num FROM lienhe"));  
+		$total_results = mysqli_fetch_array(mysqli_query(mysqli_connect("localhost","root","","oto"),"SELECT COUNT(*) as Num FROM hoadon"));  
 
 			// Tính tổng số trang. Làm tròn lên sử dụng ceil()  
 		$total_pages = ceil($total_results[0] / $max_results);  
@@ -90,7 +99,7 @@
 		if($total_pages>1){
 		if($page > 1){  
 			$prev = ($page - 1);  
-			echo "<a href=\"".$_SERVER['PHP_SELF']."?admin=hienthiht&page=$prev\"><button class='trang'>Trang trước</button></a>&nbsp;";  
+			echo "<a href=\"".$_SERVER['PHP_SELF']."?admin=hienthihd&page=$prev\"><button class='trang'>Trang trước</button></a>&nbsp;";  
 		}    
 		else{
 			echo "<a><button class='trang'>Trang trước</button></a>&nbsp;"; 
@@ -101,14 +110,14 @@
 
 				echo "$i&nbsp;"; 
 			} else {  
-				echo "<a href=\"".$_SERVER['PHP_SELF']."?admin=hienthiht&page=$i\"><button class='so'>$i</button></a>&nbsp;";  
+				echo "<a href=\"".$_SERVER['PHP_SELF']."?admin=hienthihd&page=$i\"><button class='so'>$i</button></a>&nbsp;";  
 			}  
 		}  
 
 						// Tạo liên kết đến trang tiếp theo  
 		if($page < $total_pages){  
 			$next = ($page + 1);  
-			echo "<a href=\"".$_SERVER['PHP_SELF']."?admin=hienthiht&page=$next\"><button class='trang'>Trang sau</button></a>";  
+			echo "<a href=\"".$_SERVER['PHP_SELF']."?admin=hienthihd&page=$next\"><button class='trang'>Trang sau</button></a>";  
 		}  
 		else{
 			echo "<a><button class='trang'>Trang sau</button></a>&nbsp;"; 
@@ -117,11 +126,3 @@
 }
 		?>
 	</div>
-<script language="JavaScript">
-    function checkdel(idht)
-    {
-        var	idht=idht;
-        if(confirm("Bạn có chắc chắn muốn xóa tin này?")==true)
-            window.open(link,"_self",1);
-    }
-</script>

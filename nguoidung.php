@@ -1,33 +1,26 @@
 ﻿<link rel="stylesheet" href="css/hienthi_sp.css">
-<script type="text/javascript" src="js/checkbox.js"></script>
 <?php
 	include ('../include/connect.php');
 	
-    $select = "select * from lienhe ";
+    $select = "select * from nguoidung ";
     $query = mysqli_query(mysqli_connect("localhost","root","","oto"),$select);
     $dem = mysqli_num_rows($query);
 ?>
 <div class="quanlysp">
-	<h3>QUẢN LÝ LIÊN HỆ</h3>
-	<p>Có tổng <font color=red><b><?php echo $dem ?></b></font> tin</p>
-	<form action="admin.php?admin=xulyht" method="post">
-		<div id="check">
-			<p>
-				<input type="submit" name="xoa" value="Xóa" />
-
-			</p>
-		</div>
+	<h3>QUẢN LÝ NGƯỜI DÙNG</h3>
+	
+	<p>Có tổng <font color=red><b><?php echo $dem ?></b></font> người dùng</p>
 </div>
 <table>
     
     <tr class='tieude_hienthi_sp'>
-		
-		<td width="30"><input type="checkbox" name="check"  class="checkbox" onclick="checkall('item', this)"></td>
         <td>ID</td>
-        <td>Chủ đề</td>
-        <td>Nội dung</td>
-        <td>Tên</td>
+        <td>Tên ND</td>
+        <td>Username</td>
         <td>Email</td>
+        <td>Điện thoại</td>
+        <td>Quyền</td>
+        <td style="width:80px;">Active</td>
     </tr>
 
     <?php
@@ -50,7 +43,7 @@
 
 		// Chạy 1 MySQL query để hiện thị kết quả trên trang hiện tại  
 
-		$sql = mysqli_query(mysqli_connect("localhost","root","","oto"),"SELECT * FROM lienhe LIMIT $from, $max_results"); 
+		$sql = mysqli_query(mysqli_connect("localhost","root","","oto"),"SELECT * FROM nguoidung LIMIT $from, $max_results"); 
 
 
 
@@ -60,26 +53,36 @@
         {
 ?>
             <tr class='noidung_hienthi_sp'>
-				<td class="masp_hienthi_sp"><input type="checkbox" name="id[]" class="item" class="checkbox" value="<?=$bien['idht']?>"/></td>
-                <td class="masp_hienthi_sp"><?php  echo $bien['idht'] ?></td>
-                <td class="stt_hienthi_sp"><?php echo $bien['chude'] ?></td>
-                <td class="img_hienthi_sp"> <?php echo $bien['noidung'] ?>  </td>
-				<td class="sl_hienthi_sp"><?php echo $bien['hoten'] ?></td>
+                <td class="masp_hienthi_sp"><?php  echo $bien['idnd'] ?></td>
+                <td class="stt_hienthi_sp"><?php echo $bien['tennd'] ?></td>
+                <td class="img_hienthi_sp"> <?php echo $bien['username'] ?>  </td>
 				<td class="sl_hienthi_sp"><?php echo $bien['email'] ?></td>
-			</tr>
+				<td class="sl_hienthi_sp">0<?php echo $bien['dienthoai'] ?></td>
+				<td class="sl_hienthi_sp"><?php 
+					if($bien['phanquyen']==0)
+						echo "Administrator";
+					else 
+						echo "Người dùng";
+					
+				?></td>
+                <td class="active_hienthi_sp">
+                    <a href='?admin=suand&idnd=<?php echo $bien['idnd'] ?>'><img src="img/sua.png" title="Sửa"></a>
+					<?php echo "<p onclick = 'checkdel({$bien['idnd'] })' ><img src='img/xoa.png' title='Xóa' class='delete'></p>" ?>
+                </td>
+            </tr>
 <?php 
     }
 	
-    else echo "<tr><td colspan='6'>Không có tin nào</td></tr>";
+    else echo "<tr><td colspan='6'>Không có khách hàng</td></tr>";
 	
 ?>
 </table>
-</form>
+
 	<div id="phantrang_sp" style="text-align:center; width: 100%;">
 		
 		<?php
 			// Tính tổng kết quả trong toàn DB:  
-		$total_results = mysqli_fetch_array(mysqli_query(mysqli_connect("localhost","root","","oto"),"SELECT COUNT(*) as Num FROM lienhe"));  
+		$total_results = mysqli_fetch_array(mysqli_query(mysqli_connect("localhost","root","","oto"),"SELECT COUNT(*) as Num FROM nguoidung"));  
 
 			// Tính tổng số trang. Làm tròn lên sử dụng ceil()  
 		$total_pages = ceil($total_results[0] / $max_results);  
@@ -90,7 +93,7 @@
 		if($total_pages>1){
 		if($page > 1){  
 			$prev = ($page - 1);  
-			echo "<a href=\"".$_SERVER['PHP_SELF']."?admin=hienthiht&page=$prev\"><button class='trang'>Trang trước</button></a>&nbsp;";  
+			echo "<a href=\"".$_SERVER['PHP_SELF']."?admin=hienthind&page=$prev\"><button class='trang'>Trang trước</button></a>&nbsp;";  
 		}    
 		else{
 			echo "<a><button class='trang'>Trang trước</button></a>&nbsp;"; 
@@ -101,14 +104,14 @@
 
 				echo "$i&nbsp;"; 
 			} else {  
-				echo "<a href=\"".$_SERVER['PHP_SELF']."?admin=hienthiht&page=$i\"><button class='so'>$i</button></a>&nbsp;";  
+				echo "<a href=\"".$_SERVER['PHP_SELF']."?admin=hienthind&page=$i\"><button class='so'>$i</button></a>&nbsp;";  
 			}  
 		}  
 
 						// Tạo liên kết đến trang tiếp theo  
 		if($page < $total_pages){  
 			$next = ($page + 1);  
-			echo "<a href=\"".$_SERVER['PHP_SELF']."?admin=hienthiht&page=$next\"><button class='trang'>Trang sau</button></a>";  
+			echo "<a href=\"".$_SERVER['PHP_SELF']."?admin=hienthind&page=$next\"><button class='trang'>Trang sau</button></a>";  
 		}  
 		else{
 			echo "<a><button class='trang'>Trang sau</button></a>&nbsp;"; 
@@ -117,11 +120,13 @@
 }
 		?>
 	</div>
+
 <script language="JavaScript">
-    function checkdel(idht)
+    function checkdel(idnd)
     {
-        var	idht=idht;
-        if(confirm("Bạn có chắc chắn muốn xóa tin này?")==true)
+        var	idnd=idnd;
+        var link="xoa_nguoidung.php?idnd="+idnd;
+        if(confirm("Bạn có chắc chắn muốn xóa người dùng này?")==true)
             window.open(link,"_self",1);
     }
 </script>

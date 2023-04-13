@@ -1,77 +1,132 @@
-﻿<section class="product-content clearfix" style="margin-top:55px;">
-	<div class="breadcrumb clearfix" style="padding-left: 10px;">
-		<ul>
-			<li itemtype="http://shema.org/Breadcrumb" itemscope="" class="home">
-				<a title="Đến trang chủ" href="index.php" itemprop="url"><span itemprop="title">Trang chủ</span></a>
-			</li>
-			<li class="icon-li"><strong>Sản phẩm</strong> </li>
-		</ul>
+﻿<link rel="stylesheet" href="css/hienthi_sp.css">
+<script type="text/javascript" src="js/checkbox.js"></script>
+<?php
+include ('../include/connect.php');
+
+$select = "select * from sanpham inner join danhmuc on sanpham.madm=danhmuc.madm";
+$query = mysqli_query(mysqli_connect("localhost","root","","oto"),$select);
+$dem = mysqli_num_rows($query);
+?>
+<div class="quanlysp">
+	<h3>QUẢN LÝ SẢN PHẨM</h3>
+	<a href='?admin=themsp' >Thêm sản phẩm</a><br>
+	
+	<p>Có tổng <font color=red><b><?php echo $dem ?></b></font> sản phẩm</p>
+	<form action="admin.php?admin=xulysp" method="post">
+		<div id="check">
+			<p>
+				<input type="submit" name="xoa" value="Xóa" />
+
+			</p>
+		</div>
 	</div>
+	<table>
+		
+		<tr class='tieude_hienthi_sp'>
+			<td width="30"><input type="checkbox" name="check"  class="checkbox" onclick="checkall('item', this)"></td>
+			<td>IDSP</td>
+			<td>HÌnh ảnh và Tên SP</td>
+			<td>Số lượng</td>
+			<td>Đã bán</td>
+			<td>Giá</td>
+			<td>Danh mục</td>
+			<td>Active</td>
+		</tr>
 
-	<?php 
-	$sql="select * from danhmuc where dequi=1 order by madm";
-	$result=mysqli_query(mysqli_connect("localhost","root","","oto"),$sql);
+		<?php
+		
+		/*------------Phan trang------------- */
+		// Nếu đã có sẵn số thứ tự của trang thì giữ nguyên (ở đây tôi dùng biến $page) 
+		// nếu chưa có, đặt mặc định là 1!   
+
+		if(!isset($_GET['page'])){  
+			$page = 1;  
+		} else {  
+			$page = $_GET['page'];  
+		}  
+
+		// Chọn số kết quả trả về trong mỗi trang mặc định là 10 
+		$max_results = 10;  
+
+		// Tính số thứ tự giá trị trả về của đầu trang hiện tại 
+		$from = (($page * $max_results) - $max_results);  
+
+		// Chạy 1 MySQL query để hiện thị kết quả trên trang hiện tại  
+
+		$sql = mysqli_query(mysqli_connect("localhost","root","","oto"),"SELECT * FROM sanpham inner join danhmuc on sanpham.madm=danhmuc.madm ORDER by idsp DESC  LIMIT $from, $max_results"); 
 
 
-	while($row=mysqli_fetch_array($result))
-	{ 
-		$sql1="select * from sanpham where madm={$row['madm']} order by idsp  LIMIT 0,4";
-		$kq=mysqli_query(mysqli_connect("localhost","root","","oto"),$sql1);
-		$dem = mysqli_num_rows($kq);
-		if($dem>0)
-		{
-			?>
 
-			<h1 class="title clearfix" style="margin:0px"><span><?php echo $row["tendm"];?></span></h1>
-			
-			<div style="width: 100%; text-align: right;">
-				<p><a href="index.php?madm=<?php echo $row['madm']?>">Xem thêm<span class="xemthem"></span></a></p>
-			</div>
-
-			<div class="product-block product-grid row clearfix">
-
+		
+		if($dem > 0)
+			while ($bien = mysqli_fetch_array($sql))
+			{
+				?>
+				<tr class='noidung_hienthi_sp'>
+					<td class="masp_hienthi_sp"><input type="checkbox" name="id[]" class="item" class="checkbox" value="<?=$bien['idsp']?>"/></td>
+					<td class="masp_hienthi_sp"><?php  echo $bien['idsp'] ?></td>
+					<td class="img_hienthi_sp">
+						<img src="../Uploads/shop264/images/<?php echo $bien['hinhanh'] ?>"  width='60' height='60'><br>
+						<h4><?php echo $bien['tensp'] ?></h4>
+					</td>
+					<td class="sl_hienthi_sp"><?php echo $bien['soluong'] ?></td>
+					<td class="sl_hienthi_sp"><?php echo $bien['daban'] ?></td>
+					<td class="gia_hienthi_sp"><?php echo number_format($bien['gia']).' VNÐ' ?></td>
+					<td  class="madm_hienthi_sp">
+						
+						<?=$bien['tendm'] ?>
+					</td>
+					<td class="active_hienthi_sp">
+						<a href='admin.php?admin=suasp&idsp=<?php echo $bien['idsp']  ?>'><img src="img/sua.png" title="Sửa"></a>
+					</td>
+				</tr>
 				<?php 
 			}
-			$i=1;
-			while($rows=mysqli_fetch_array($kq))
-				{ ?>
-					<div class="col-md-3 col-sm-3 col-xs-12 product-resize product-item-box" style=" width: 24%; margin-left: 9px;">
-						<div class="product-item">
-							<div class="image image-resize">
-								<a href="san-pham/ao-cong-so-tay-bup-sang-trong.html">
-									<img  class="img-responsive" src="Uploads/shop264/images/<?php echo $rows['hinhanh'];?>">
-								</a>
-								<div class="ribbon">
-									<?php 
-									if($rows['khuyenmai1']>0)
-									{
-									?><span class="hot">-<?php echo $rows['khuyenmai1']?>%</span>
-								<?php } ?>
-							</div>
-							<div class="newst-img"><a href="index.php?content=chitietsp&idsp=<?php echo $rows['idsp'] ?>"><i class="fa fa-search"></i></a></div>
-						</div>
-						<div class="right-block">
-									<h2 class="name" style="height: 60px;">
-										<a href="san-pham/ao-cong-so-tay-bup-sang-trong.html"><?php echo $rows['tensp'];?></a>
-									</h2>
-									<div class="price">
-										<span class="price-new"><?php echo number_format(($rows['gia']*((100-$rows['khuyenmai1'])/100)),0,",",".");?>₫</span>
-									</div>
-								</div>
-						<div class="form-group" align="center">
-							<div class="col-sm-offset-4 col-sm-8" style="margin: 0px; width: 100%; ">
-								<a href="index.php?content=chitietsp&idsp=<?php echo $rows['idsp'] ?>" class="chitiet"><button class="btn btn-default">Chi tiết</button></a>
-								<a href="index.php?content=cart&action=add&idsp=<?php echo $rows['idsp'] ?>"><button class="btn btn-default">Cho vào giỏ</button></a>
-							</div>
-						</div>
-					</div>
-				</div>
-				<?php 
-				if($i%4==0){
-					echo "<div style=\"clear: both;\"></div>";
-				}
-				$i++;
-			} ?>
-		</div>
-	<?php }?>
-</section>
+			
+			else echo "<tr><td colspan='6'>Không có sản phẩm trong CSDL</td></tr>";
+			
+			?>
+		</table>
+	</form>
+	<div id="phantrang_sp" style="text-align:center; width: 100%;">
+		
+		<?php
+			// Tính tổng kết quả trong toàn DB:  
+		$total_results = mysqli_fetch_array(mysqli_query(mysqli_connect("localhost","root","","oto"),"SELECT COUNT(*) as Num FROM sanpham"));  
+
+			// Tính tổng số trang. Làm tròn lên sử dụng ceil()  
+		$total_pages = ceil($total_results[0] / $max_results);  
+
+
+			// Tạo liên kết đến trang trước trang đang xem 
+		
+		
+		if($page > 1){  
+			$prev = ($page - 1);  
+			echo "<a href=\"".$_SERVER['PHP_SELF']."?admin=hienthisp&page=$prev\"><button class='trang'>Trang trước</button></a>&nbsp;";  
+		}    
+		else{
+			echo "<a><button class='trang'>Trang trước</button></a>&nbsp;"; 
+		}
+
+		for($i = 1; $i <= $total_pages; $i++){  
+			if(($page) == $i){
+
+				echo "$i&nbsp;"; 
+			} else {  
+				echo "<a href=\"".$_SERVER['PHP_SELF']."?admin=hienthisp&page=$i\"><button class='so'>$i</button></a>&nbsp;";  
+			}  
+		}  
+
+						// Tạo liên kết đến trang tiếp theo  
+		if($page < $total_pages){  
+			$next = ($page + 1);  
+			echo "<a href=\"".$_SERVER['PHP_SELF']."?admin=hienthisp&page=$next\"><button class='trang'>Trang sau</button></a>";  
+		}  
+		else{
+			echo "<a><button class='trang'>Trang sau</button></a>&nbsp;"; 
+		} 	
+
+
+		?>
+	</div>

@@ -1,145 +1,123 @@
-﻿
+<link rel="stylesheet" href="css/hienthi_sp.css">
+<script type="text/javascript" src="js/checkbox.js"></script>
+<?php
+	include ('../include/connect.php');
+	
+    $select = "select * from tintuc ";
+    $query = mysqli_query(mysqli_connect("localhost","root","","dienthoai"),$select);
+    $dem = mysqli_num_rows($query);
+?>
+<div class="quanlysp">
+	<h3>QUẢN LÝ TIN TỨC</h3>
+	<a href='?admin=themtt' >Thêm tin tức</a><br>
+	<p>Có tổng <font color=red><b><?php echo $dem ?></b></font> tin tức</p>
+	<form action="admin.php?admin=xulytt" method="post">
+		<div id="check">
+			<p>
+				<input type="submit" name="xoa" value="Xóa" />
 
-
-<div class="main">
-	<div class="container">
-		<div class="row" style="padding-left: 10px; margin-top: 10px;">
-			<div class="col-md-3">
-
-				<div class="menu-news">
-					<h3>
-						<span>
-							Tin tức
-						</span>
-					</h3>
-					<ul class='level0'><li><a href='index.php?content=tintuc'><i class='fa fa-arrow-circle-o-right'></i>Tin khuyến mãi</a></li>
-						<li><a href='index.php?content=tintuc'><i class='fa fa-arrow-circle-o-right'></i>Tin thị trường</a></li>
-					</ul class='level0'>
-				</div>
-
-				<div class="box-news">
-					<h3>
-						<span>
-							Tin tức nổi bật
-						</span>
-					</h3>
-					<div class="news-content">
-						<div class=" news-block clearfix">
-							<div class="news-item clearfix">
-								<div class="col-md-4 col-sm-4 col-xs-4 image"><a href="index.php?content=tintuc"><img class="img-responsive" src="Uploads/shop150/images/product/tin1.jpg" alt="" title=" MINH HẰNG GỢI CẢM TRONG V&#193;Y KHO&#201;T NGỰC"/></a></div>
-								<div class="col-md-8 col-sm-8 col-xs-8 news-info ">
-									<h2 class="name"><a href="index.php?content=tintuc"> ẢNH THỰC TẾ VINFAST VF 9 XUẤT HIỆN TẠI LẠNG SƠN, NỘI THẤT LÀ TÂM ĐIỂM</a></h2>
-
-								</div>
-							</div>
-							<div class="news-item clearfix">
-								<div class="col-md-4 col-sm-4 col-xs-4 image"><a href="index.php?content=tintuc"><img class="img-responsive" src="Uploads/shop150/images/product/tin2.jpg" alt="" title="VINFAST THAM DỰ TRIỂN LÃM XE ĐIỆN EVS35, RA MẮT VF 8 VÀ VF 9 TẠI CHÂU Â"/></a></div>
-								<div class="col-md-8 col-sm-8 col-xs-8 news-info ">
-									<h2 class="name"><a href="index.php?content=tintuc">VINFAST THAM DỰ TRIỂN LÃM XE ĐIỆN EVS35, RA MẮT VF 8 VÀ VF 9 TẠI CHÂU ÂU</a></h2>
-
-								</div>
-							</div>
-							<div class="news-item clearfix">
-								<div class="col-md-4 col-sm-4 col-xs-4 image"><a href="index.php?content=tintuc"><img class="img-responsive" src="Uploads/shop150/images/product/tin3.jpg" alt="" title="NGHỊCH LÝ NHƯNG LẠI CÓ LÝ: FORD RANGER RAPTOR CŨ ĐẮT HƠN XE MỚI"/></a></div>
-								<div class="col-md-8 col-sm-8 col-xs-8 news-info ">
-									<h2 class="name"><a href="index.php?content=tintuc">NGHỊCH LÝ NHƯNG LẠI CÓ LÝ: FORD RANGER RAPTOR CŨ ĐẮT HƠN XE MỚI</a></h2>
-
-								</div>
-							</div>
-							<div class="news-item clearfix">
-								<div class="col-md-4 col-sm-4 col-xs-4 image"><a href="index.php?content=tintuc"><img class="img-responsive" src="Uploads/shop150/images/product/tin4.jpg" alt="" title="BẮT GẶP VINFAST VF 9 ĐANG SẠC PIN TẠI HẢI PHÒNG, THIẾT KẾ CỰC ẤN TƯỢNG"/></a></div>
-								<div class="col-md-8 col-sm-8 col-xs-8 news-info ">
-									<h2 class="name"><a href="index.php?content=tintuc">BẮT GẶP VINFAST VF 9 ĐANG SẠC PIN TẠI HẢI PHÒNG, THIẾT KẾ CỰC ẤN TƯỢNG</a></h2>
-
-								</div>
-							</div>
-							<div class="news-item clearfix">
-								<div class="col-md-4 col-sm-4 col-xs-4 image"><a href="index.php?content=tintuc"><img class="img-responsive" src="Uploads/shop150/images/product/tin5.jpg" alt="" title="VINFAST VF 8 CHẠY THỬ TRÊN ĐƯỜNG TUYẾT TẠI ĐỨC"/></a></div>
-								<div class="col-md-8 col-sm-8 col-xs-8 news-info ">
-									<h2 class="name"><a href="index.php?content=tintuc">VINFAST VF 8 CHẠY THỬ TRÊN ĐƯỜNG TUYẾT TẠI ĐỨC</a></h2>
-
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-9">
-
-				<div class="breadcrumb clearfix">
-					<ul>
-						<li itemtype="http://shema.org/Breadcrumb" itemscope="" class="home">
-							<a title="Đến trang chủ" href="index.php" itemprop="url"><span itemprop="title">Trang chủ</span></a>
-						</li>
-						<li class="icon-li"><strong>Tin tức</strong> </li>
-					</ul>
-				</div>
-				<script type="text/javascript">
-					$(".link-site-more").hover(function () { $(this).find(".s-c-n").show(); }, function () { $(this).find(".s-c-n").hide(); });
-				</script>
-
-				<div class="news-content" style="padding-right: 30px;">
-					<h1 class="title"><span>Tin tức</span></h1>
-					<div class="news-block clearfix">
-						<div class="news-item clearfix" style="height: fit-content;" style="height: fit-content;">
-							<div class="col-md-3 col-sm-4 col-xs-12 image"><a href="index.php?content=tintuc"><img src="Uploads/shop150/images/product/tin1.jpg" class="img-responsive" alt="" /></a></div>
-							<div class="col-md-9 col-sm-8 col-xs-12 news-info ">
-								<h2 class="name"><a href="index.php?content=tintuc"> ẢNH THỰC TẾ VINFAST VF 9 XUẤT HIỆN TẠI LẠNG SƠN, NỘI THẤT LÀ TÂM ĐIỂM</a></h2>
-								<p class="date">20/05/2021</p>
-								<div class="desc"><p>
-								Sau khi xuất hiện tại Hải Phòng, VinFast VF 9 tiếp tục được bắt gặp tại cửa khẩu Hữu Nghị, tỉnh Lạng Sơn để chuẩn bị đưa sang Trung Quốc phục vụ cho mục đích nghiên cứu và thử nghiệm. 
-								Trước đó, 2 mẫu xe VF e34 và VF 8 cũng đã từng trải qua công đoạn này.</p>
-							</div>
-						</div>
-					</div>
-					<div class="news-item clearfix" style="height: fit-content;">
-						<div class="col-md-3 col-sm-4 col-xs-12 image"><a href="index.php?content=tintuc"><img src="Uploads/shop150/images/product/tin2.jpg" class="img-responsive" alt="" /></a></div>
-						<div class="col-md-9 col-sm-8 col-xs-12 news-info ">
-							<h2 class="name"><a href="index.php?content=tintuc">VINFAST THAM DỰ TRIỂN LÃM XE ĐIỆN EVS35, RA MẮT VF 8 VÀ VF 9 TẠI CHÂU ÂU</a></h2>
-							<p class="date">10/04/2021</p>
-							<div class="desc"><p>
-							VinFast sẽ chính thức giới thiệu VF 8 và VF 9 tới người tiêu dùng châu Âu trong khuôn khổ Hội nghị và Triển lãm Xe điện Quốc Tế (EVS35) tại Oslo, Na Uy.
-							 </p>
-						</div>
-					</div>
-				</div>
-				<div class="news-item clearfix" style="height: fit-content;">
-					<div class="col-md-3 col-sm-4 col-xs-12 image"><a href="index.php?content=tintuc"><img src="Uploads/shop150/images/product/tin3.jpg" class="img-responsive" alt="" /></a></div>
-					<div class="col-md-9 col-sm-8 col-xs-12 news-info ">
-						<h2 class="name"><a href="index.php?content=tintuc">NGHỊCH LÝ NHƯNG LẠI CÓ LÝ: FORD RANGER RAPTOR CŨ ĐẮT HƠN XE MỚI</a></h2>
-						<p class="date">20/02/2022</p>
-						<div class="desc"><p>
-						   Ford Ranger Raptor đời cũ đang có giá bán cao hơn xe mới tại Việt Nam tới hơn 100 triệu đồng.
-						 </p>
-					</div>
-				</div>
-			</div>
-			<div class="news-item clearfix" style="height: fit-content;">
-				<div class="col-md-3 col-sm-4 col-xs-12 image"><a href="index.php?content=tintuc"><img src="Uploads/shop150/images/product/tin4.jpg" class="img-responsive" alt="" /></a></div>
-				<div class="col-md-9 col-sm-8 col-xs-12 news-info ">
-					<h2 class="name"><a href="index.php?content=tintuc">BẮT GẶP VINFAST VF 9 ĐANG SẠC PIN TẠI HẢI PHÒNG, THIẾT KẾ CỰC ẤN TƯỢNG</a></h2>
-					<p class="date">13/05/2022</p>
-					<div class="desc"><p>
-					Mặc dù chưa được bán chính thức nhưng hình ảnh thực tế của chiếc VinFast VF 9 đã lộ diện tại nhà máy ở Hải Phòng. Có thể thấy chiếc VF 9 có ngoại thất màu trắng và không hề có lớp ngụy trang nào bên ngoài, 
-					xe đang trong quá trình sạc pin.
-					 </p>
-				</div>
-			</div>
+			</p>
 		</div>
-		<div class="news-item clearfix" style="height: fit-content;">
-			<div class="col-md-3 col-sm-4 col-xs-12 image"><a href="index.php?content=tintuc"><img src="Uploads/shop150/images/product/tin5.jpg" class="img-responsive" alt="" /></a></div>
-			<div class="col-md-9 col-sm-8 col-xs-12 news-info ">
-				<h2 class="name"><a href="index.php?content=tintuc">VINFAST VF 8 CHẠY THỬ TRÊN ĐƯỜNG TUYẾT TẠI ĐỨC</a></h2>
-				<p class="date">28/05/2022</p>
-				<div class="desc"><p>
-				Mẫu xe điện VinFast VF 8 thực hiện chạy thử trên đường tuyết tại Đức trước khi được bán ra ở châu Âu vào giữa năm 2022.</p>
-			</div>
-		</div>
+</div>
+<table>
+    
+    <tr class='tieude_hienthi_sp'>
+		<td width="30"><input type="checkbox" name="check"  class="checkbox" onclick="checkall('item', this)"></td>
+        <td>ID</td>
+        <td>Tiêu đề</td>
+        <td>Nội dung ngắn</td>
+        <td>Hình ảnh</td>
+        <td>Tác giả</td>
+        <td>Active</td>
+    </tr>
+
+    <?php
+	
+	/*------------Phan trang------------- */
+		// Nếu đã có sẵn số thứ tự của trang thì giữ nguyên (ở đây tôi dùng biến $page) 
+		// nếu chưa có, đặt mặc định là 1!   
+
+		if(!isset($_GET['page'])){  
+		$page = 1;  
+		} else {  
+		$page = $_GET['page'];  
+		}  
+
+		// Chọn số kết quả trả về trong mỗi trang mặc định là 10 
+		$max_results = 10;  
+
+		// Tính số thứ tự giá trị trả về của đầu trang hiện tại 
+		$from = (($page * $max_results) - $max_results);  
+
+		// Chạy 1 MySQL query để hiện thị kết quả trên trang hiện tại  
+
+		$sql = mysqli_query(mysqli_connect("localhost","root","","dienthoai"),"SELECT * FROM tintuc order by matt DESC LIMIT $from, $max_results"); 
+
+
+
+								
+    if($dem > 0)
+        while ($bien = mysqli_fetch_array($sql))
+        {
+?>
+            <tr class='noidung_hienthi_sp'>
+				<td class="masp_hienthi_sp"><input type="checkbox" name="id[]" class="item" class="checkbox" value="<?=$bien['matt']?>"/></td>
+                <td class="masp_hienthi_sp" width="30"><?php  echo $bien['matt'] ?></td>
+                <td class="stt_hienthi_sp"><?php echo $bien['tieude'] ?></td>
+                <td class="img_hienthi_sp" width="300"> <?php echo $bien['ndngan'] ?>  </td>
+				<td class="sl_hienthi_sp"><img src="../img/tintuc/<?php echo $bien['hinhanh'] ?>" width="80" height="60"/></td>
+				<td class="sl_hienthi_sp"><?php echo $bien['tacgia'] ?></td>
+                <td class="active_hienthi_sp">
+                    <a href='?admin=suatt&matt=<?php echo $bien['matt'] ?>'><img src="img/sua.png" title="Sửa"></a>
+				 </td>
+            </tr>
+<?php 
+    }
+	
+    else echo "<tr><td colspan='6'>Không có khách hàng</td></tr>";
+	
+?>
+</table>
+</form>
+	<div id="phantrang_sp" style="text-align:center; width: 100%;">
+		
+		<?php
+			// Tính tổng kết quả trong toàn DB:  
+		$total_results = mysqli_fetch_array(mysqli_query(mysqli_connect("localhost","root","","dienthoai"),"SELECT COUNT(*) as Num FROM tintuc"));  
+
+			// Tính tổng số trang. Làm tròn lên sử dụng ceil()  
+		$total_pages = ceil($total_results[0] / $max_results);  
+
+
+			// Tạo liên kết đến trang trước trang đang xem 
+		
+		if($total_pages>1){
+		if($page > 1){  
+			$prev = ($page - 1);  
+			echo "<a href=\"".$_SERVER['PHP_SELF']."?admin=hienthitt&page=$prev\"><button class='trang'>Trang trước</button></a>&nbsp;";  
+		}    
+		else{
+			echo "<a><button class='trang'>Trang trước</button></a>&nbsp;"; 
+		}
+
+		for($i = 1; $i <= $total_pages; $i++){  
+			if(($page) == $i){
+
+				echo "$i&nbsp;"; 
+			} else {  
+				echo "<a href=\"".$_SERVER['PHP_SELF']."?admin=hienthitt&page=$i\"><button class='so'>$i</button></a>&nbsp;";  
+			}  
+		}  
+
+						// Tạo liên kết đến trang tiếp theo  
+		if($page < $total_pages){  
+			$next = ($page + 1);  
+			echo "<a href=\"".$_SERVER['PHP_SELF']."?admin=hienthitt&page=$next\"><button class='trang'>Trang sau</button></a>";  
+		}  
+		else{
+			echo "<a><button class='trang'>Trang sau</button></a>&nbsp;"; 
+		} 	
+
+}
+		?>
 	</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-
