@@ -63,19 +63,19 @@ elseif(isset($_GET['madm'])) {
 	}  
 
 						// Chọn số kết quả trả về trong mỗi trang mặc định là 10 
-	$max_results = 12;  
+	$max_results = 11;  
 
 						// Tính số thứ tự giá trị trả về của đầu trang hiện tại 
-	$from = (($page * $max_results) - $max_results);  
+	$from = (($page *  $max_results) - $max_results);  
 
 						// Chạy 1 MySQL query để hiện thị kết quả trên trang hiện tại  
 
-	$sql.=  "LIMIT $from, $max_results";
+	$sql.=  "LIMIT  $from, $max_results";
 
 
-	$query=mysqli_query(mysqli_connect("localhost","root","","oto"),$sql);
+	$query=mysqli_query(mysqli_connect("localhost","root"," ","oto"),$sql);
 	$total=mysqli_num_rows($query);
-	if($total>0)
+	if($total > 0)
 	{
 		?>
 
@@ -182,19 +182,9 @@ elseif(isset($_GET['madm'])) {
 			?>
 
 
-			<!-- --------------------------------------SLIDE---------------------------------------- -->
-			<div id="wowslider-container0">
-				<div class="ws_images"><ul>
-					<li><img src="slide/data0/images/slider1.png" title="slider-1" id="wows0_0"/></li>
-					<li><img src="slide/data0/images/slider2.png" title="slider-2" id="wows0_1"/></li>
-					<li><img src="slide/data0/images/slider3.png" title="slider-3" id="wows0_2"/></li>
-				</ul></div>
-			</div>	
-			<script type="text/javascript" src="slide/engine0/wowslider.js"></script>
-			<script type="text/javascript" src="slide/engine0/script.js"></script>
-			<!-- ----------------------------------------------------------------------------------- -->
 
-			<div class="box-html">
+
+			<!-- <div class="box-html">
 
 				<section class="introduce clearfix">
 
@@ -206,7 +196,7 @@ elseif(isset($_GET['madm'])) {
 
 				</section>
 
-			</div>
+			</div> -->
 
 			<section class="product-content clearfix" style="margin-top:55px;">
 				<h1 class="title clearfix"><span>DÒNG XE BÁN CHẠY</span></h1>
@@ -255,6 +245,31 @@ elseif(isset($_GET['madm'])) {
 						} ?>
 					</div>
 
+					<!-- --------------------------------------SLIDE---------------------------------------- -->
+					<div id="wowslider-container0">
+						<div class="ws_images"><ul>
+							<li><img src="slide/data0/images/slider1.png" title="slider-1" id="wows0_0"/></li>
+							<li><img src="slide/data0/images/slider2.png" title="slider-2" id="wows0_1"/></li>
+							<li><img src="slide/data0/images/slider3.png" title="slider-3" id="wows0_2"/></li>
+						</ul></div>
+					</div>	
+					<script type="text/javascript" src="slide/engine0/wowslider.js"></script>
+					<script type="text/javascript" src="slide/engine0/script.js"></script>
+					<!-- ----------------------------------------------------------------------------------- -->
+
+					<div class="box-html">
+
+						<section class="introduce clearfix">
+
+							<h1>Chào mừng quý khách ghé thăm showroom online của chúng tôi</h1>
+							<p>Đến với chúng tôi quý khách sẽ chọn được những chiếc xe ưng ý và những 
+								dịch vụ tốt nhất mà chúng tôi mang lại.</p>
+							<img src="Uploads/shop264/images/article/banner_menu-15216166.png" alt="car"
+							class="img-responsive center-block featured-image">
+
+						</section>
+
+					</div>
 
 					<h1 class="title clearfix"><span>DÒNG XE MỚI</span></h1>
 

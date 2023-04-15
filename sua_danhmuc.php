@@ -43,16 +43,21 @@ $row=mysqli_fetch_array($query); // chưa có mysql_query nhé. ở trên có ki
 
 ?>
 
-<form action="?admin=suadm&madm=<?php echo $row['madm']; ?>" method="post" name="frm" onsubmit="return kiemtra()"> <!-- $row ở đâu ra thế? -->
+<form action="?admin=suadm&madm=<?php echo $row['madm']; ?>" method="post" name="frm" onsubmit="return kiemtra1()"> <!-- $row ở đâu ra thế? -->
 	<table>
 		<tr class="tieude_themsp">
-			<td colspan=2 >Sửa Danh Mục</td>
+			<td colspan=2 >Sửa Danh Mụ</td>
 		</tr>
 		<tr>
 			<td>Tên danh mục</td>
-			<td><input type="text" name="tendm" value="<?php echo $row['tendm']; ?>" /> </td>
+			<td><input type="text" name="tendm" value="<?php echo $row['madm']; ?>" /> </td>
 		</tr>
 		
+		<tr>
+			<td>Sua danh mục</td>
+			<td><input type="text" name="Suadm" value="<?php echo $row['madm']; ?>" /> </td>
+		</tr>
+
 	   <tr>
 				<td colspan=2 class="input"> <input type="submit" name="btnthem" value="Update" />
 				<input type="reset" name="" value="Hủy" /> </td>

@@ -60,7 +60,56 @@
 
 
 					</div>
-					<div class="col-md-3 col-sm-6 col-xs-12 clearfix" style="position: absolute;right: 0px;">
+					
+
+
+					<div class="product-tabs" style="width: 850px; padding-left: 10px;">
+						<div class="name">
+							<ul class="nav nav-tabs">
+								<li role="presentation" >
+									<a href="javascript:void(0)" class="ng-binding">Chi tiết sản phẩm</a>
+								</li>
+								<li role="presentation" >
+									<a href="javascript:void(0)" class="ng-binding">Bình luận</a>
+								</li>
+							</ul>
+
+						</div>
+
+
+
+
+						<div class="tab-content">
+							<div class="fade in" >
+								<h3 class="sub-title">Chi tiết sản phẩm</h3>
+								<div  class="ng-binding"><div>
+								Điểm nổi bật</div>
+								<div>
+								- Honda HR-V được thiết kế đơn giản, nhưng không kém phần tinh tế, cách điệu, đẹp mắt.</div>
+								<div>
+								- Chiếc B-SUV này được sử dụng những họa tiết hình kim cương mạ crom mang đến phong cách mới táo bạo cho xe</div>
+								<div>
+								Có những tùy chọn màu sắc gồm: Trắng bạc thời trắng (bản RS), Trắng ngọc trai, Đỏ cá tính, Xám phong cách, Đen ánh độc tôn.</div>
+								<div>
+								- Trọng lượng xe: 1.830kg</div>
+								<div>
+								&nbsp;</div>
+								<div>
+								Điều kiện</div>
+								<div>
+								- Giao sản phẩm theo màu đến tận tay khách hàng.</div>
+								<div>
+								+ Đối với khu vực TP.HCM: Miễn phí.</div>
+								<div>
+								- Màu sắc: Trắng bạc thời trắng (bản RS), Trắng ngọc trai, Đỏ cá tính, Xám phong cách, Đen ánh độc tôn.</div>
+								<div>
+								- Khách hàng không bù thêm tiền khi nhận sản phẩm.</div>
+								<div>
+								- Khách hàng vui lòng kiểm tra sản phẩm trước khi nhận hàng, Hotdeal không chịu trách nhiệm đổi trả sản phẩm sau khi giao hàng.</div>
+							</div>
+						</div>
+
+						<div class="col-md-3 col-sm-6 col-xs-12 clearfix" style="position: absolute;right: 0px;">
 
 						<div class="box-sale-policy" ng-controller="moduleController" ng-init="initSalePolicyController('Shop')">
 							<h3><span>Chính sách bán hàng</span></h3>
@@ -101,50 +150,6 @@
 							</div>
 						</div>
 					</div>
-
-
-					<div class="product-tabs" style="width: 850px; padding-left: 10px;">
-						<div class="name">
-							<ul class="nav nav-tabs">
-								<li role="presentation" >
-									<a href="javascript:void(0)" class="ng-binding">Chi tiết sản phẩm</a>
-								</li>
-								<li role="presentation" >
-									<a href="javascript:void(0)" class="ng-binding">Bình luận</a>
-								</li>
-							</ul>
-
-						</div>
-
-						<div class="tab-content">
-							<div class="fade in" >
-								<h3 class="sub-title">Chi tiết sản phẩm</h3>
-								<div  class="ng-binding"><div>
-								Điểm nổi bật</div>
-								<div>
-								- Honda HR-V được thiết kế đơn giản, nhưng không kém phần tinh tế, cách điệu, đẹp mắt.</div>
-								<div>
-								- Chiếc B-SUV này được sử dụng những họa tiết hình kim cương mạ crom mang đến phong cách mới táo bạo cho xe</div>
-								<div>
-								Có những tùy chọn màu sắc gồm: Trắng bạc thời trắng (bản RS), Trắng ngọc trai, Đỏ cá tính, Xám phong cách, Đen ánh độc tôn.</div>
-								<div>
-								- Trọng lượng xe: 1.830kg</div>
-								<div>
-								&nbsp;</div>
-								<div>
-								Điều kiện</div>
-								<div>
-								- Giao sản phẩm theo màu đến tận tay khách hàng.</div>
-								<div>
-								+ Đối với khu vực TP.HCM: Miễn phí.</div>
-								<div>
-								- Màu sắc: Trắng bạc thời trắng (bản RS), Trắng ngọc trai, Đỏ cá tính, Xám phong cách, Đen ánh độc tôn.</div>
-								<div>
-								- Khách hàng không bù thêm tiền khi nhận sản phẩm.</div>
-								<div>
-								- Khách hàng vui lòng kiểm tra sản phẩm trước khi nhận hàng, Hotdeal không chịu trách nhiệm đổi trả sản phẩm sau khi giao hàng.</div>
-							</div>
-						</div>
 					</div>
 
 				</div>
