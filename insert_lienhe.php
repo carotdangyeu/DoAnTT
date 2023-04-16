@@ -15,10 +15,10 @@
 			redirect("index.php","Cảm ơn bạn đã góp ý. Chúng tôi sẽ trả lời bạn sớm nhất có thể", 2);
 		else
 			echo "<script language='javascript'>
-								alert('Lỗi');
+								alert('Error');
 								history.back(); 
-     history.go(-1);
-							</script>";
+     							history.go(-1);
+				  </script>";
 	}
 
 ?>

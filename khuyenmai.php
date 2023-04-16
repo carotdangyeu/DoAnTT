@@ -54,6 +54,12 @@ include("include/connect.php");
 			<td><p style="padding-top:5px; padding-bottom:5px;"><?php echo $row['khuyenmai2'] ?></p></td>
 			<td><?php echo number_format(($row['gia']*((100-$row['khuyenmai1'])/100)),0,",",".");?></</td>
 
+			<td><?php echo $idsp++; ?></td>
+			<td><p style="padding-top:5px; padding-bottom:5px;"><a href="index.php?content=chitietsp&idsp=<?php echo $row['idsp'] ?>"><?php echo $row['tensp'] ?></a></p></td>
+			<td><?php echo $row['khuyenmai2'] ?> %</td>
+			<td><p style="padding-top:5px; padding-bottom:5px;"><?php echo $row['khuyenmai1'] ?></p></td>
+			<td><?php echo number_format(($row['gia']*((100-$row['khuyenmai1'])/100)),0,",",".");?></</td>
+
 		</tr>
 		<?php 
 	}
