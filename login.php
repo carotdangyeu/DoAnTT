@@ -67,6 +67,33 @@ if(isset($_POST['login']))
                 }
             }
         }
+
+	else if
+        {
+	
+		 while($rows = mysqli_fetch_array($row))
+            {
+              $_SESSION['username'] = $username;
+				$_SESSION['phanquyen'] = $rows['phanquyen'];
+				$_SESSION['idnd'] = $rows['idnd'];
+                $_SESSION['phanquyen'] = 0;
+                if($rows['phanquyen'] == 0)
+                {
+                    $_SESSION['phanquyen'] == 1;
+					echo "
+							<script language='javascript'>
+								alert('Đăng nhập quản trị thành công');
+								window.open('admin.php','_self', 1);
+							</script>
+						";
+                }
+                else
+                {
+                    
+					header('location:../index.php');
+                }
+            }
+        }
     }
 }
 ?>

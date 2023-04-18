@@ -29,7 +29,7 @@ $mahd=$_GET['mahd'];
                                         </tr>
                                         <tr>
                                           <td>Địa chỉ</td>
-                                          <td>: Xã An Thượng - Huyện Hoài Đức - Thành Phố Hà Nội</td>
+                                          <td>: Phường Xuân Phương - Nam Từ Liêm - Thành Phố Hà Nội</td>
                                         </tr>
                                         <tr>
                                           <td width="65">Tel:</td>
@@ -41,7 +41,49 @@ $mahd=$_GET['mahd'];
                                         </tr>
                                         <tr>
                                           <td>Email</td>
-                                          <td>:thanhdat21293@gmail.com</td>
+                                          <td>:leanhdung@gmail.com</td>
+                                        </tr>
+                                      </tbody>
+                                  </table></td>
+                                </tr>
+                              </tbody>
+                          </table></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div></td>
+                </tr>
+
+		<tr>
+                  <td height="25" valign="top"align="center"><div align="left">
+                    <table width="100%">
+                      <tbody>
+                        <tr>
+                          <td width="5" height="95">&nbsp;</td>
+                       
+                          <td width="343"><table border="0" cellpadding="0" cellspacing="0" width="100%">
+                              <tbody>
+                                <tr>
+                                  <td><table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                      <tbody>
+                                        <tr>
+                                          <td colspan="2"><strong>CÔNG TY TNHH RUNTIME</strong></td>
+                                        </tr>
+                                        <tr>
+                                          <td>Địa chỉ</td>
+                                          <td>: Phường Xuân Phương - Nam Từ Liêm - Thành Phố Hà Nội</td>
+                                        </tr>
+                                        <tr>
+                                          <td width="65">Tel:</td>
+                                          <td>: 0424 666888</td>
+                                        </tr>
+                                        <tr>
+                                          <td>Di Động </td>
+                                          <td>: 0123456789</td>
+                                        </tr>
+                                        <tr>
+                                          <td>Email</td>
+                                          <td>:leanhdung@gmail.com</td>
                                         </tr>
                                       </tbody>
                                   </table></td>
@@ -68,9 +110,10 @@ $row1=mysqli_fetch_array($rows1);
 ?>
                         <b>Thông tin Khách hàng:</b>                    </div>
               <table width="100%" >
-                            <tr>
-                              <td width="3%" >&nbsp;</td>
-                              <td width="34%" >Họ tên:</td>
+                            
+                           <tr>
+                              <td width="4%" >&nbsp;</td>
+                              <td width="33%" >Họ tên:</td>
                               <td width="63%" >  <?php echo $row1['hoten'];?>   </td>
                             </tr>
                             <tr>
@@ -120,8 +163,9 @@ $row1=mysqli_fetch_array($rows1);
                               <td width="25%" align="right" bgcolor="#CCCCCC"  align="left" style="border:1px solid green;"><div align="center">Tổng cộng</div></td>
                             </tr>
                           <?php
+   $tong=0;
    $stt=1;
-	$tong=0;
+	
 	$sql="select * from chitiethoadon where mahd='$mahd'";
 	$rows=mysqli_query(mysqli_connect("localhost","root","","oto"),$sql);
 	while($row=mysqli_fetch_array($rows))
