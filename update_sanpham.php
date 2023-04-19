@@ -17,16 +17,16 @@
 		$file_error=isset($_FILES['hinhanh']['error']) ?$_FILES['hinhanh']['error'] :"";
 		//Lay gio cua he thong
 		$dmyhis= date("Y").date("m").date("d").date("H").date("i").date("s");
-		//Lay ngay cua he thong
-		$ngay=date("Y").":".date("m").":".date("d").":".date("H").":".date("i").":".date("s");
+		// //Lay ngay cua he thong
+		// $ngay=date("Y").":".date("m").":".date("d").":".date("H").":".date("i").":".date("s");
 				
-		$soluong=$_POST['soluong'];
-		$daban=$_POST['daban'];
-		$madm=$_POST['danhmuc'];
-		$idsp=$_GET['idsp'];
-		if($_FILES['hinhanh']['name'] != "")
-		{
-		move_uploaded_file($file_tmp,$upload_image.$file__name__);
+		// $soluong=$_POST['soluong'];
+		// $daban=$_POST['daban'];
+		// $madm=$_POST['danhmuc'];
+		// $idsp=$_GET['idsp'];
+		// if($_FILES['hinhanh']['name'] != "")
+		// {
+		// move_uploaded_file($file_tmp,$upload_image.$file__name__);
 	   
 	$sql_update=("
 		UPDATE sanpham SET 
