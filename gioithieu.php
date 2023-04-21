@@ -54,6 +54,41 @@
 						</div>
 					</div>    
 					
+					<h1>Welcome to my web page!</h1>
+	<p>Today's date is <?php echo date('Y-m-d'); ?></p>
+	<p>Here's some data from a database:</p>
+	<ul>
+	<?php
+		// Connect to database
+		$host = 'localhost';
+		$user = 'yourusername';
+		$pass = 'yourpassword';
+		$dbname = 'yourdatabase';
+
+		$conn = new mysqli($host, $user, $pass, $dbname);
+
+		// Check connection
+		if ($conn->connect_error) {
+			die("Connection failed: " . $conn->connect_error);
+		}
+
+		// Query database
+		$sql = "SELECT * FROM mytable";
+		$result = $conn->query($sql);
+
+		if ($result->num_rows > 0) {
+			// Display data
+			while($row = $result->fetch_assoc()) {
+				echo "<li>" . $row["name"] . " - " . $row["email"] . "</li>";
+			}
+		} else {
+			echo "0 results";
+		}
+
+		$conn->close();
+	?>
+	</ul>
+
 					<script type="text/javascript">
 						$(".link-site-more").hover(function () { $(this).find(".s-c-n").show(); }, function () { $(this).find(".s-c-n").hide(); });
 					</script>
