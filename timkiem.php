@@ -19,16 +19,16 @@
 			$sql="select * FROM sanpham WHERE tensp like '%".$tim."%' and (gia between '0' and '100000000')";	
 			break;
 			case "2":
-			$sql="select * FROM sanpham WHERE tensp like '%".$tim."%'  and (gia between '100000000' and '300000000')";	
+			$sql="select * FROM sanpham WHERE tensp like '%".$tim."%'  and (gia between '100000001' and '300000000')";	
 			break;
 			case "3":
-			$sql="select * FROM sanpham WHERE tensp like '%".$tim."%'  and (gia between '300000000' and '500000000')";	
+			$sql="select * FROM sanpham WHERE tensp like '%".$tim."%'  and (gia between '300000001' and '500000000')";	
 			break;
 			case "4":
-			$sql="select * FROM sanpham WHERE tensp like '%".$tim."%'  and (gia between '500000000' and '800000000')";	
+			$sql="select * FROM sanpham WHERE tensp like '%".$tim."%'  and (gia between '500000001' and '800000000')";	
 			break;
 			case "5":
-			$sql="select * FROM sanpham WHERE tensp like '%".$tim."%'  and (gia between '800000000' and '1000000000')";	
+			$sql="select * FROM sanpham WHERE tensp like '%".$tim."%'  and (gia between '800000001' and '1000000000')";	
 			break;
 			case "6":
 			$sql="select * FROM sanpham WHERE tensp like '%".$tim."%'  and (gia >= '1000000000')";	
