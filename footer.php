@@ -31,7 +31,7 @@
 							</li>
 						</ul>
 					</div>
-					<div class="footer-box col-md-3 col-sm-12 col-xs-12">
+					<!-- <div class="footer-box col-md-3 col-sm-12 col-xs-12">
 						<div class="item">
 							<h3>
 								<span>Trợ giúp</span>
@@ -54,7 +54,7 @@
 								</a>
 							</li>
 						</ul>
-					</div>
+					</div> -->
 					<div class="footer-box box-address col-md-3 col-sm-12 col-xs-12">
 						<div class="item">
 							<h3>
